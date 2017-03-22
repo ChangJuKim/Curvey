@@ -5,10 +5,10 @@ from matrix import *
 def add_circle( points, cx, cy, cz, r, step ):
     i = 0;
     while i < step:
-        x0 = cx + math.cos(2 * math.pi * i / step)
-        y0 = cy + math.sin(2 * math.pi * i / step)
-        x1 = cx + math.cos(2 * math.pi * (i+1) / step)
-        y1 = cy + math.sin(2 * math.pi * (i+1) / step)
+        x0 = cx + math.cos(2 * math.pi * i / step) * r
+        y0 = cy + math.sin(2 * math.pi * i / step) * r
+        x1 = cx + math.cos(2 * math.pi * (i+1) / step) * r
+        y1 = cy + math.sin(2 * math.pi * (i+1) / step) * r
         add_edge(points, x0, y0, cz, x1, y1, cz)
         i = i+1
 
@@ -25,9 +25,7 @@ def add_curve( points, x0, y0, x1, y1, x2, y2, x3, y3, step, curve_type ):
         i = i+1
 
 def generate_polynomial(m, i):
-    print_matrix(m)
-    print m[0]
-    return m[0]*(i**3) + m[1]*(i**2) + m[2]*i + m[3]
+    return m[0][0]*(i**3) + m[0][1]*(i**2) + m[0][2]*i + m[0][3]
 
 
 def draw_lines( matrix, screen, color ):
